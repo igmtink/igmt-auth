@@ -1,7 +1,8 @@
 import type { NextAuthConfig } from 'next-auth'
 import Google from 'next-auth/providers/google'
 import Credentials from 'next-auth/providers/credentials'
-// import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs'
+// import argon2 from 'argon2'
 
 import { logInSchema } from '@/schemas'
 import { getUserByUsername } from '@/data/user'
@@ -27,11 +28,12 @@ export default {
             return null
           }
 
-          // const passwordMatch = await bcrypt.compare(password, user.password)
-          const passwordMatch = await Bun.password.verify(
-            password,
-            user.password
-          )
+          const passwordMatch = await bcrypt.compare(password, user.password)
+          // const passwordMatch = await Bun.password.verify(
+          //   password,
+          //   user.password
+          // )
+          // const passwordMatch = await argon2.verify(password, user.password)
 
           if (passwordMatch) {
             return user

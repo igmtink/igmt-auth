@@ -74,6 +74,7 @@ export const {
     async session({ token, session }) {
       //! To extend and update the (session) from (token)
       if (session.user) {
+        session.user.name = token.name
         session.user.id = token.sub as string
         session.user.username = token.username as string
         session.user.email = token.email
@@ -119,6 +120,8 @@ export const {
       const existingAccount = await getAccountByUserId(existingUser.id)
 
       //! To extend and update the (session)
+
+      token.name = existingUser.name
 
       token.username = existingUser.username
 

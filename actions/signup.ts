@@ -2,7 +2,9 @@
 
 import { signUpSchema } from '@/schemas'
 import * as z from 'zod'
-// import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs'
+// import argon2 from 'argon2'
+
 import { prismadb as db } from '@/lib/prismadb'
 import { getUserByEmail, getUserByUsername } from '@/data/user'
 import { generateEmailVerificationToken } from '@/lib/token'
@@ -24,8 +26,9 @@ export const signup = async (values: z.infer<typeof signUpSchema>) => {
 
   if (existingEmail) return { error: 'Email is already in use!' }
 
-  // const hashedPassword = await bcrypt.hash(password, 12)
-  const hashedPassword = await Bun.password.hash(password)
+  const hashedPassword = await bcrypt.hash(password, 12)
+  // const hashedPassword = await Bun.password.hash(password)
+  // const hashedPassword = await argon2.hash(password)
 
   await db.user.create({
     data: {

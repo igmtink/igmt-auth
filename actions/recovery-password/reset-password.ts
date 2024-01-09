@@ -6,6 +6,7 @@ import { resetPasswordSchema } from '@/schemas'
 import { getUserByEmail } from '@/data/user'
 import { generatePasswordResetToken } from '@/lib/token'
 import { sendPasswordResetEmail } from '@/lib/resend'
+import { getAccountByUserId } from '@/data/account'
 
 export const resetPassword = async (
   values: z.infer<typeof resetPasswordSchema>
@@ -22,6 +23,12 @@ export const resetPassword = async (
   if (!existingUser) {
     return { error: 'Email not found!' }
   }
+
+  const existingAccount = await getAccountByUserId(existingUser.id)
+
+  const isOAuth = !!existingAccount
+
+  if (isOAuth) return { error: 'Invalid email!' }
 
   //! First we will (generatePasswordToken) this will create a new token in our database
   const passwordResetToken = await generatePasswordResetToken(email)

@@ -2,7 +2,8 @@
 
 import { AuthError } from 'next-auth'
 import * as z from 'zod'
-// import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs'
+// import argon2 from 'argon2'
 
 import { signIn } from '@/auth'
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes'
@@ -33,11 +34,12 @@ export const login = async (values: z.infer<typeof logInSchema>) => {
     return { error: 'Incorrect username or password!' }
   }
 
-  // const passwordMatch = await bcrypt.compare(password, existingUser.password)
-  const passwordMatch = await Bun.password.verify(
-    password,
-    existingUser.password
-  )
+  const passwordMatch = await bcrypt.compare(password, existingUser.password)
+  // const passwordMatch = await Bun.password.verify(
+  //   password,
+  //   existingUser.password
+  // )
+  // const passwordMatch = await argon2.verify(password, existingUser.password)
 
   if (!passwordMatch) return { error: 'Incorrect username or password!' }
 
