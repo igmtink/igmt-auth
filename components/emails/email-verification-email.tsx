@@ -12,7 +12,7 @@ import {
 } from '@react-email/components'
 import React from 'react'
 
-const baseUrl = process.env.IGMT_NEXTAUTH_URL
+const baseUrl = process.env.IGMT_AUTH_URL
 
 export const EmailVerificationEmail: React.FC<TEmailVerificationToken> = ({
   token
@@ -27,14 +27,14 @@ export const EmailVerificationEmail: React.FC<TEmailVerificationToken> = ({
       <Tailwind>
         <Body className='flex items-center justify-center bg-black py-12 font-sans text-white'>
           <Container className='w-[640px] rounded-md bg-[#121212] p-6 shadow-md'>
-            <Heading className='text-4xl font-bold'>IGMT NextAuth</Heading>
+            <Heading className='text-4xl font-bold'>IGMT Auth</Heading>
             <Section>
               <Text className='mb-6 mt-0 text-xl font-medium'>
                 Confirm your account
               </Text>
 
               <Text className='mb-6 mt-0'>
-                Thank you for signing up for IGMT NextAuth. To confirm your
+                Thank you for signing up for IGMT Auth. To confirm your
                 account, please follow the button below.
               </Text>
 

@@ -5,7 +5,7 @@ export default async function Home() {
   return (
     <section className='flex h-full items-center justify-center'>
       <div className='space-y-4 text-center'>
-        <h1 className='text-4xl font-bold'>IGMT NEXTAUTH</h1>
+        <h1 className='text-4xl font-bold'>IGMT AUTH</h1>
         <p>This project is for reviewer of Next-Auth V5</p>
 
         <p>

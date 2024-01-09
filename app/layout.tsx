@@ -15,8 +15,8 @@ const fontSans = FontSans({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - IGMT NextAuth',
-    default: 'IGMT NextAuth'
+    template: '%s - IGMT Auth',
+    default: 'IGMT Auth'
   },
   description: 'The official Next.js Learn Dashboard built with App Router.',
   metadataBase: new URL('https://next-learn-dashboard.vercel.sh')

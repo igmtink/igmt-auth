@@ -18,7 +18,7 @@ export const sendEmailVerificationEmail = async (
     //! You can change this if you have a own domain
     from: 'onboarding@resend.dev',
     to: email,
-    subject: 'Confirm your IGMT NextAuth account',
+    subject: 'Confirm your IGMT Auth account',
     react: React.createElement(EmailVerificationEmail, { token })
     // react: <EmailVerification token={token} />
   })
@@ -29,7 +29,7 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
     //! You can change this if you have a own domain
     from: 'onboarding@resend.dev',
     to: email,
-    subject: 'Reset your IGMT NextAuth password',
+    subject: 'Reset your IGMT Auth password',
     react: React.createElement(PasswordResetEmail, { token })
     // react: <EmailVerification token={token} />
   })

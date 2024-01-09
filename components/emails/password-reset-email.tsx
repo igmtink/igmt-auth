@@ -12,7 +12,7 @@ import {
 } from '@react-email/components'
 import React from 'react'
 
-const baseUrl = process.env.IGMT_NEXTAUTH_URL
+const baseUrl = process.env.IGMT_AUTH_URL
 
 export const PasswordResetEmail: React.FC<TPasswordResetToken> = ({
   token
@@ -25,7 +25,7 @@ export const PasswordResetEmail: React.FC<TPasswordResetToken> = ({
       <Tailwind>
         <Body className='flex items-center justify-center bg-black py-12 font-sans text-white'>
           <Container className='w-[640px] rounded-md bg-[#121212] p-6 shadow-md'>
-            <Heading className='text-4xl font-bold'>IGMT NextAuth</Heading>
+            <Heading className='text-4xl font-bold'>IGMT Auth</Heading>
             <Section>
               <Text className='mb-6 mt-0 text-xl font-medium'>
                 Reset your password

@@ -19,12 +19,12 @@ export const TwoFactorAuthenticationEmail: React.FC<TTwoFactorToken> = ({
     <Html>
       <Head />
       <Preview>
-        Your login requires an 2FA to access your IGMT NextAuth account.
+        Your login requires an 2FA to access your IGMT Auth account.
       </Preview>
       <Tailwind>
         <Body className='flex items-center justify-center bg-black py-12 font-sans text-white'>
           <Container className='w-[640px] rounded-md bg-[#121212] p-6 shadow-md'>
-            <Heading className='text-4xl font-bold'>IGMT NextAuth</Heading>
+            <Heading className='text-4xl font-bold'>IGMT Auth</Heading>
             <Section>
               <Text className='mb-6 mt-0 text-xl font-medium'>
                 Two Factor Authentication
