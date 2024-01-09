@@ -1,4 +1,4 @@
-import { UserRole } from '@prisma/client'
+// import { UserRole } from '@prisma/client'
 
 interface TCard {
   children: React.ReactNode
@@ -25,5 +25,5 @@ interface TTwoFactorToken {
 
 interface TRoleGate {
   children: React.ReactNode
-  allowedRole: UserRole
+  allowedRole: 'ADMIN' | 'USER'
 }
