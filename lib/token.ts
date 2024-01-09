@@ -65,7 +65,7 @@ export const generatePasswordResetToken = async (email: string) => {
   return passwordResetToken
 }
 
-export const generateTwoFactorToken = async (email: string) => {
+export const generate2FAToken = async (email: string) => {
   //! Use (crypto) instead of (uuid) because in (Two Factor Authentication) we need a six digits number
   //! In javascript we can type (_) on the numbers to see how many zero we have, (100_000) is equal to (100000)
   const token = crypto.randomInt(100_00, 1_000_000).toString()

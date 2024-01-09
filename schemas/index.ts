@@ -4,7 +4,7 @@ import * as z from 'zod'
 export const logInSchema = z.object({
   username: z.string().min(1, { message: 'Username is required' }),
   password: z.string().min(1, { message: 'Password is required' }),
-  twoFactorCode: z.optional(z.string())
+  twoFactorAuthenticationCode: z.optional(z.string())
 })
 
 export const signUpSchema = z
@@ -69,7 +69,7 @@ export const settingsSchema = z
       z.string().min(6, { message: 'Password must be at least 6 characters' })
     ),
     role: z.enum([UserRole.ADMIN, UserRole.USER]),
-    isTwoFactorEnabled: z.optional(z.boolean())
+    is2FAEnabled: z.optional(z.boolean())
   })
   .refine(
     data => {
