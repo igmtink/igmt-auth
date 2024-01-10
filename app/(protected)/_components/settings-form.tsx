@@ -52,7 +52,7 @@ export const SettingsForm = () => {
       username: user?.username || undefined,
       email: user?.email || undefined,
       //! The default value is (undefined) because we don't have the user's password, we only have the (hashedPassword), so if the user save the settings we are not going to update the password
-      oldPassword: undefined,
+      password: undefined,
       newPassword: undefined,
       role: user?.role || undefined,
       is2FAEnabled: user?.is2FAEnabled || undefined
@@ -60,6 +60,9 @@ export const SettingsForm = () => {
   })
 
   const onSubmit = (values: z.infer<typeof settingsSchema>) => {
+    setError('')
+    setSuccess('')
+
     startTransition(() => {
       settingsUpdate(values)
         .then(data => {
@@ -136,7 +139,7 @@ export const SettingsForm = () => {
 
               <FormField
                 control={form.control}
-                name='oldPassword'
+                name='password'
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>

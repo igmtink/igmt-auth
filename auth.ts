@@ -23,7 +23,8 @@ export const {
   handlers: { GET, POST },
   auth,
   signIn,
-  signOut
+  signOut,
+  update
 } = NextAuth({
   // providers: [Google]
   pages: {

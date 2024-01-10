@@ -10,7 +10,7 @@ import { DEFAULT_LOGIN_REDIRECT } from '@/routes'
 import { logInSchema } from '@/schemas'
 import { generateEmailVerificationToken, generate2FAToken } from '@/lib/token'
 import { getUserByUsername } from '@/data/user'
-import { sendEmailVerificationEmail, sendTwoFactorEmail } from '@/lib/resend'
+import { sendEmailVerificationEmail, send2FAEmail } from '@/lib/resend'
 import { get2FATokenByToken } from '@/data/2fa/2fa-token'
 import { prismadb as db } from '@/lib/prismadb'
 import { get2FAConfirmationByUserId } from '@/data/2fa/2fa-confirmation'
@@ -106,7 +106,7 @@ export const login = async (values: z.infer<typeof logInSchema>) => {
       const twoFactorAuthenticationToken = await generate2FAToken(
         existingUser.email
       )
-      await sendTwoFactorEmail(
+      await send2FAEmail(
         twoFactorAuthenticationToken.email,
         twoFactorAuthenticationToken.token
       )
