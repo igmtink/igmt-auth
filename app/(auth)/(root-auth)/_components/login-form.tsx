@@ -57,6 +57,7 @@ export const LogInForm = () => {
     searchParams.get('error') === 'OAuthAccountNotLinked'
       ? 'Email already in use with different provider!'
       : ''
+  const callbackUrl = searchParams.get('callbackUrl')
 
   const form = useForm<z.infer<typeof logInSchema>>({
     resolver: zodResolver(logInSchema),
@@ -74,7 +75,7 @@ export const LogInForm = () => {
     //! Using (useTransition) react hook to have a transition / pending also it will revalidate the page automatically
     startTransition(() => {
       //! The (data) argument is coming from our (return) in (login) server action, because in server action there's our validation logic
-      login(values)
+      login(values, callbackUrl)
         .then(data => {
           // setError(data?.error)
           // // TODO: Add when we add 2FA

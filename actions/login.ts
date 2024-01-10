@@ -15,7 +15,10 @@ import { get2FATokenByToken } from '@/data/2fa/2fa-token'
 import { prismadb as db } from '@/lib/prismadb'
 import { get2FAConfirmationByUserId } from '@/data/2fa/2fa-confirmation'
 
-export const login = async (values: z.infer<typeof logInSchema>) => {
+export const login = async (
+  values: z.infer<typeof logInSchema>,
+  callbackUrl?: string | null
+) => {
   const validatedFields = logInSchema.safeParse(values)
 
   if (!validatedFields.success) return { error: 'Invalid fields!' }
@@ -120,7 +123,7 @@ export const login = async (values: z.infer<typeof logInSchema>) => {
     await signIn('credentials', {
       username,
       password,
-      redirectTo: DEFAULT_LOGIN_REDIRECT
+      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT
     })
   } catch (error) {
     //! If there's an error inside of (Credentials Provider) like there's no user existing on the database

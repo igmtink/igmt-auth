@@ -39,7 +39,26 @@ export default auth(req => {
 
   //! If the user is not (isLoggedIn) & is not on (isPublicRoutes) redirect to (/login) route
   if (!isLoggedIn && !isPublicRoutes) {
-    return Response.redirect(new URL('/login', nextUrl))
+    let callbackUrl = nextUrl.pathname
+
+    console.log('CALLBACK URL: ', callbackUrl)
+
+    if (nextUrl.search) {
+      console.log('NEXT URL SEARCH: ', nextUrl.search)
+
+      callbackUrl += nextUrl.search
+    }
+
+    console.log('CALLBACK URL WITH NEXT URL SEARCH: ', callbackUrl)
+
+    //! (encodeURIComponent) to encode characters from url such as (?, =, /, &, :)
+    const encodedCallbackUrl = encodeURIComponent(callbackUrl)
+
+    console.log('ENCODED CALLBACK URL: ', encodedCallbackUrl)
+
+    return Response.redirect(
+      new URL(`/login?callbackUrl=${encodedCallbackUrl}`, nextUrl)
+    )
   }
 
   return null
