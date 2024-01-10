@@ -89,7 +89,6 @@ export const SettingsForm = () => {
             name='name'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
                 <FormControl>
                   <Input {...field} placeholder='Name' disabled={isPending} />
                 </FormControl>
@@ -105,7 +104,6 @@ export const SettingsForm = () => {
                 name='username'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -123,7 +121,6 @@ export const SettingsForm = () => {
                 name='email'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -142,11 +139,10 @@ export const SettingsForm = () => {
                 name='oldPassword'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Old Password</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder='******'
+                        placeholder='Old Password'
                         type='password'
                         disabled={isPending}
                       />
@@ -161,11 +157,10 @@ export const SettingsForm = () => {
                 name='newPassword'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>New Password</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder='******'
+                        placeholder='New Password'
                         type='password'
                         disabled={isPending}
                       />
@@ -182,14 +177,13 @@ export const SettingsForm = () => {
             name='role'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Role</FormLabel>
                 <Select
                   disabled={isPending}
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger aria-label='User Role Button'>
                       <SelectValue placeholder='Select a role' />
                     </SelectTrigger>
                   </FormControl>
@@ -220,6 +214,7 @@ export const SettingsForm = () => {
                       disabled={isPending}
                       checked={field.value}
                       onCheckedChange={field.onChange}
+                      aria-label='2FA Switch'
                     />
                   </FormControl>
                   <FormMessage />

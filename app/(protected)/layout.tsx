@@ -16,7 +16,7 @@ export default async function ProtectedRouteLayout({
     //! To use (session) in (client side)
     <SessionProvider session={session}>
       <div className='flex h-full w-full items-center justify-center'>
-        <div className='flex flex-col gap-12'>
+        <div className='flex flex-col gap-6'>
           <NavBar />
           <main className='w-full'>{children}</main>
         </div>

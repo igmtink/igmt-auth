@@ -16,7 +16,7 @@ export const UserButton = () => {
   const user = useCurrentUser()
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger aria-label='User Button'>
         <Avatar className='size-8'>
           <AvatarImage src={user?.image || ''} />
           <AvatarFallback className='bg-primary'>
