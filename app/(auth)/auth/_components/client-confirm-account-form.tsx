@@ -11,7 +11,7 @@ import { BeatLoader } from 'react-spinners'
 import { Card } from '@/components/ui/card'
 import { FormError, FormSuccess } from '@/components/auth/form-status'
 
-export const ConfirmAccountForm = () => {
+export const ClientConfirmAccountForm = () => {
   const [error, setError] = useState<string | undefined>()
   const [success, setSuccess] = useState<string | undefined>()
 
