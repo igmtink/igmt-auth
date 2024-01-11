@@ -10,21 +10,17 @@ export const logInSchema = z.object({
 
 export const signUpSchema = z
   .object({
-    firstName: z
-      .string()
-      .min(2, { message: 'Firstname is required' })
-      .regex(new RegExp('^[a-zA-Z]+$', 'No special character allowed')),
-    lastName: z
-      .string()
-      .min(2, { message: 'Lastname is required' })
-      .regex(new RegExp('^[a-zA-Z]+$', 'No special character allowed')),
+    firstName: z.string().min(2, { message: 'Firstname is required' }),
+    // .regex(new RegExp('^[a-zA-Z]+$'), 'No special character allowed'),
+    lastName: z.string().min(2, { message: 'Lastname is required' }),
+    // .regex(new RegExp('^[a-zA-Z]+$'), 'No special character allowed'),
     username: z.string().min(2, { message: 'Username is required' }),
     email: z.string().min(1, { message: 'Email is required' }).email({
       message: 'Please enter a valid email'
     }),
-    phone: z
-      .string()
-      .refine(validator.isMobilePhone, 'Please enter a valid phone number'),
+    // phone: z
+    //   .string()
+    //   .refine(validator.isMobilePhone, 'Please enter a valid phone number'),
     password: z
       .string()
       .min(6, { message: 'Password must be at least 6 characters' }),
