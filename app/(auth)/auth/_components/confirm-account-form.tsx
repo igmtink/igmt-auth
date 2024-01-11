@@ -41,7 +41,7 @@ export const ConfirmAccountForm = () => {
       className='max-w-md'
     >
       <div className='mb-2 flex w-full items-center justify-center'>
-        {!success && !error && <BeatLoader color='#ffffff' />}
+        {!success && !error && <BeatLoader size='6' color='#ffffff' />}
         <FormError message={error} />
         <FormSuccess message={success} />
       </div>
