@@ -31,7 +31,7 @@ export default auth(req => {
   if (isAuthRoutes) {
     if (isLoggedIn) {
       //! In the middleware and the (new URL) constructor you also have to pass (nextUrl) as the last argument because it will create a absolute path (localhost:3000/DEFAULT_LOGIN_REDIRECT)
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
+      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT))
     }
 
     return null
@@ -49,7 +49,7 @@ export default auth(req => {
     const encodedCallbackUrl = encodeURIComponent(callbackUrl)
 
     return Response.redirect(
-      new URL(`/login?callbackUrl=${encodedCallbackUrl}`, nextUrl)
+      new URL(`/login?callbackUrl=${encodedCallbackUrl}`)
     )
   }
 
