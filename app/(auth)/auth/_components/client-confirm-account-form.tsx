@@ -22,8 +22,11 @@ export const ClientConfirmAccountForm = () => {
   const onSubmit = useCallback(() => {
     confirmAccount(token)
       .then(data => {
-        setError(data.error)
-        setSuccess(data.success)
+        if (data.success) {
+          setSuccess(data.success);
+        } else {
+          setError(data.error);
+        }
       })
       .catch(() => {
         setError('Something went wrong!')
