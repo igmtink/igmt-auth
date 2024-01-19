@@ -1,14 +1,102 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// datasource db {
+//   provider  = "postgresql"
+//   url  	    = env("DATABASE_URL")
+//   directUrl = env("DIRECT_URL")
+// }
+
+// enum UserRole {
+//   ADMIN
+//   USER
+// }
+
+// model User {
+//   id                                  String    @id @default(cuid())
+//   name                                String?
+//   username                            String?   @unique
+//   email                               String?   @unique
+//   emailVerified                       DateTime?
+//   password                            String?
+//   role                                UserRole @default(USER)
+//   image                               String?
+//   accounts                            Account[]
+//   is2FAEnabled                        Boolean @default(false)
+//   twoFactorAuthenticationConfirmation TwoFactorAuthenticationConfirmation?
+//   // sessions      Session[]
+// }
+
+// model Account {
+//   id                 String  @id @default(cuid())
+//   userId             String
+//   type               String
+//   provider           String
+//   providerAccountId  String
+//   refresh_token      String?  @db.Text
+//   access_token       String?  @db.Text
+//   expires_at         Int?
+//   token_type         String?
+//   scope              String?
+//   id_token           String?  @db.Text
+//   session_state      String?
+
+//   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+//   @@unique([provider, providerAccountId])
+// }
+
+// model EmailVerificationToken {
+//   id      String @id @default(cuid())
+//   email   String
+//   token   String @unique
+//   expires DateTime
+
+//   // This is for rules that it can only have one unique (token) per specific (email)
+//   @@unique([email, token])
+// }
+
+// model PasswordResetToken {
+//   id      String @id @default(cuid())
+//   email   String
+//   token   String @unique
+//   expires DateTime
+
+//   // This is for rules that it can only have one unique (token) per specific (email)
+//   @@unique([email, token])
+// }
+
+// model TwoFactorAuthenticationToken {
+//   id      String @id @default(cuid())
+//   email   String
+//   token   String @unique
+//   expires DateTime
+
+//   // This is for rules that it can only have one unique (token) per specific (email)
+//   @@unique([email, token])
+// }
+
+// model TwoFactorAuthenticationConfirmation {
+//   id     String @id @default(cuid())
+
+//   userId String
+//   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+//   // Or add (@unique) in (userId String) 
+//   @@unique([userId])
+// }
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider  = "postgresql"
-  url  	    = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 enum UserRole {
@@ -17,7 +105,7 @@ enum UserRole {
 }
 
 model User {
-  id                                  String    @id @default(cuid())
+  id                                  String @id @default(auto()) @map("_id") @db.ObjectId
   name                                String?
   username                            String?   @unique
   email                               String?   @unique
@@ -32,17 +120,17 @@ model User {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
+  id                 String @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String @db.ObjectId
   type               String
   provider           String
   providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
+  refresh_token      String? @db.String
+  access_token       String? @db.String
   expires_at         Int?
   token_type         String?
   scope              String?
-  id_token           String?  @db.Text
+  id_token           String? @db.String
   session_state      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -51,7 +139,7 @@ model Account {
 }
 
 model EmailVerificationToken {
-  id      String @id @default(cuid())
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
   email   String
   token   String @unique
   expires DateTime
@@ -61,7 +149,7 @@ model EmailVerificationToken {
 }
 
 model PasswordResetToken {
-  id      String @id @default(cuid())
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
   email   String
   token   String @unique
   expires DateTime
@@ -71,7 +159,7 @@ model PasswordResetToken {
 }
 
 model TwoFactorAuthenticationToken {
-  id      String @id @default(cuid())
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
   email   String
   token   String @unique
   expires DateTime
@@ -81,9 +169,9 @@ model TwoFactorAuthenticationToken {
 }
 
 model TwoFactorAuthenticationConfirmation {
-  id     String @id @default(cuid())
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
 
-  userId String
+  userId String @db.ObjectId
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // Or add (@unique) in (userId String) 
